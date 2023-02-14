@@ -1,0 +1,17 @@
+* {
+    box-sizing: border-box;
+  }
+  
+ .expenses {
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+  
+  .expenses {
+    margin: 0 3rem;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #3f3f3f;
+  }

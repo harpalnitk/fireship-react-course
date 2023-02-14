@@ -34,16 +34,16 @@ warning in VSCode,change the css.lint.unknownAtRules setting to ignore. */
   box-sizing: border-box;
 }
 
-body {
-  height: 100vh;
+.mementoGame {
+  height: max(100vh,fit-content);
   width: 100vw;
   padding: 1rem;
-  display: flex;
-  overflow: auto;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  /* overflow: auto; */
   color: var(--text);
   background: var(--bg);
-  align-items: flex-start;
-  justify-content: center;
   font-family: var(--font-family);
 }
 
@@ -135,16 +135,20 @@ button {
 
 /* ========= Mobile ===================== */
 @media screen and (max-width: 720px) {
-  body {
-    align-items: center;
+  .mementoGame {
+    /* align-items: center; */
+    display: grid;
+    justify-content: space-between;
+    grid-template-rows: (1fr,1fr);
+    gap: 1rem;
   }
 
   header {
-    left: 0;
+    /* left: 0;
     bottom: 0;
     margin: auto;
     position: fixed;
-    border-radius: 0;
+    border-radius: 0; */
   }
 
   .grid {

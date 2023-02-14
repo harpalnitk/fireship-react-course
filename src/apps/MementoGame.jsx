@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import shuffle from "../utilities/shuffle";
-import Card from "../components/Card";
+import Card from "../components/GameCard";
 import Header from '../components/Header';
-import './styles.css';
+import './MementoGame.css';
 
 
 export default function MementoGame(){
@@ -103,8 +103,9 @@ export default function MementoGame(){
 
 
     return (
-        <>
+        <main className='mementoGame'>
     <Header handleNewGame={handleNewGame} wins={wins} />
+       
         <div className='grid'>
             {cards.map((card)=>{
             const {image,id,matched} = card;
@@ -124,7 +125,7 @@ export default function MementoGame(){
             })}
 
         </div>
-        </>
+        </main>
 
     );
 }
