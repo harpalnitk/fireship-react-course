@@ -82,3 +82,18 @@ fetchOnWindowFocus: ON
 5. we might not even need redux
 
 >npm i react-query
+
+
+
+### MEMENTO GAME
+
+> npx create-react-app my-app --template cra-template-pwa
+
+# template add progressive web app features to react app
+it will integarte a tool called workbox to automatically cache optimize ur app as PWA
+
+FOR PWA file has to be hosted on https
+and firebase hosting is ideal solution
+
+
+The course also tells how to install PWA features in the game app but we will not use that
