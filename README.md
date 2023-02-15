@@ -97,3 +97,9 @@ and firebase hosting is ideal solution
 
 
 The course also tells how to install PWA features in the game app but we will not use that
+
+## use State
+registers variable for each component instance for change detection
+
+useState declaration is executed again whenever a function in component is
+executed which call set function of useState

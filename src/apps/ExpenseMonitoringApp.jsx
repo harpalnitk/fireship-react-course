@@ -1,8 +1,17 @@
-import ExpenseItem from '../components/ExpenseItem';
+import ExpenseItem from '../components/Expenses/ExpenseItem';
 import './ExpenseMonitoringApp.css'
-import Card from '../components/Card'
+import Card from '../components/UI/Card';
+import NewExpense from '../components/NewExpense/NewExpense';
+import ExpensesFilter from '../components/Expenses/ExpenseFilter';
+import { useState } from 'react';
 
 export default function ExpenseMonitoringApp(){
+  
+  const [filteredYear, setFilteredYear] = useState('2020');
+
+  const filterChangeHandler = selectedYear => {
+       setFilteredYear(selectedYear);
+  };
     const expenses = [
         {
           id: 'e1',
@@ -25,9 +34,15 @@ export default function ExpenseMonitoringApp(){
         },
       ];
     
+      const addExpenseHandler= (data)=>{
+console.log('expense data', data);
+      }
     
     return(
-        <Card className='expenses'>
+      <>
+      <NewExpense onAddExpense={addExpenseHandler}/>
+      <Card className='expenses'> 
+      <ExpensesFilter selected={filteredYear} onChangeFilter={filterChangeHandler} /> 
         <ExpenseItem 
         title={expenses[0].title}
         amount={expenses[0].amount}
@@ -43,5 +58,7 @@ export default function ExpenseMonitoringApp(){
 
         
         </Card>
+      </>
+ 
     );
 };
