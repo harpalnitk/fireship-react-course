@@ -22,5 +22,6 @@
   }
   
   .new-expense__actions {
+    width:100%;
     text-align: right;
   }

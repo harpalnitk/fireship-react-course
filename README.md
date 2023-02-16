@@ -103,3 +103,13 @@ registers variable for each component instance for change detection
 
 useState declaration is executed again whenever a function in component is
 executed which call set function of useState
+
+# keys in list
+if ids is not used then all items in the list are rendered again
+ and react sees that the entire array changed
+ don't use index as key
+
+ ### JSX Limitations
+
+ two adjacent JSX element returned will give error
+ we cannot have more than one root level JSX element in a component

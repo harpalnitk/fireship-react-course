@@ -1,6 +1,7 @@
 .expenses-filter {
     color: white;
     padding: 0 1rem;
+    width: 100%;
   }
   
   .expenses-filter__control {
@@ -21,4 +22,5 @@
     padding: 0.5rem 3rem;
     font-weight: bold;
     border-radius: 6px;
+   
   }
