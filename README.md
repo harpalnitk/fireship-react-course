@@ -86,3 +86,34 @@ fetchOnWindowFocus: ON
 5. we might not even need redux
 
 >npm i react-query
+
+
+
+### MEMENTO GAME
+
+> npx create-react-app my-app --template cra-template-pwa
+
+# template add progressive web app features to react app
+it will integarte a tool called workbox to automatically cache optimize ur app as PWA
+
+FOR PWA file has to be hosted on https
+and firebase hosting is ideal solution
+
+
+The course also tells how to install PWA features in the game app but we will not use that
+
+## use State
+registers variable for each component instance for change detection
+
+useState declaration is executed again whenever a function in component is
+executed which call set function of useState
+
+# keys in list
+if ids is not used then all items in the list are rendered again
+ and react sees that the entire array changed
+ don't use index as key
+
+ ### JSX Limitations
+
+ two adjacent JSX element returned will give error
+ we cannot have more than one root level JSX element in a component
