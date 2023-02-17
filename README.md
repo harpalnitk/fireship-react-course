@@ -12,6 +12,10 @@ react by default runs in strict mode
 
 # 3. First actual react component is defined in app.js
 
+react library consists of two npm packages
+1. react
+2. react-dom
+
 # 4. components can import images and css
 
 # best practice to export one component per file
