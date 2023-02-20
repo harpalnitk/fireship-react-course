@@ -138,3 +138,21 @@ if ids is not used then all items in the list are rendered again
  each time state changes functional component is evaluated again
  so if http request is there in component
  it will run again and again.
+
+ ### useReducer
+ to manage to linked useStates together
+
+ ### useContext()
+ useContext() hook to fetch context
+ and AuthContext.Provider
+wrapping on component for wrapping context on all components
+and their childrens
+
+# Limitations
+not optimized for high frequency changes
+
+## Hooks
+1. call in component function
+or in Custom Hooks
+
+2. must call react hooks at the top level of component. don't call them in nested functions or block statements
