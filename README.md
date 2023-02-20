@@ -117,3 +117,10 @@ if ids is not used then all items in the list are rendered again
 
  two adjacent JSX element returned will give error
  we cannot have more than one root level JSX element in a component
+
+ ## FRAGMENT
+ <Fragment></Fragment>
+ to return two elements inside a component
+ 
+ # OR ELSE use empty tags
+ <></>  which is same as freagment
