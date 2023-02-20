@@ -1,6 +1,6 @@
 import ExpensesList from './ExpensesList';
 
-import Card from '../UI/Card';
+import Card from '../UI/Card/Card';
 
 import ExpensesFilter from './ExpenseFilter';
 import { useState } from 'react';

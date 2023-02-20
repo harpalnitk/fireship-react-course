@@ -2,7 +2,7 @@
 import Expenses from '../components/Expenses/Expenses';
 import NewExpense from '../components/NewExpense/NewExpense';
 import './ExpenseMonitoringApp.css';
-import Card from '../components/UI/Card';
+import Card from '../components/UI/Card/Card';
 import { useState } from 'react';
 
 const DUMMY_EXPENSES = [

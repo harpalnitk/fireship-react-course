@@ -34,7 +34,7 @@ in react is one way i.e. from parent to child
 
 
 ### WHY NEXTJS
-react app is invisible to search engines and socila media link bots
+react app is invisible to search engines and social media link bots
 initial page load is slow
 
 # next renders the app content first on the server and serves
@@ -130,3 +130,11 @@ if ids is not used then all items in the list are rendered again
  get reference to an element e.g. in USerInputs
 
  refs are better if just want to read a value
+
+
+ ### EFFECTS IN REACT
+
+ effects/side-effects are used for storage,http request.
+ each time state changes functional component is evaluated again
+ so if http request is there in component
+ it will run again and again.
