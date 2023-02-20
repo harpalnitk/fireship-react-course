@@ -124,3 +124,9 @@ if ids is not used then all items in the list are rendered again
  
  # OR ELSE use empty tags
  <></>  which is same as freagment
+
+ ## Reference(ref) in react
+
+ get reference to an element e.g. in USerInputs
+
+ refs are better if just want to read a value
