@@ -156,3 +156,59 @@ not optimized for high frequency changes
 or in Custom Hooks
 
 2. must call react hooks at the top level of component. don't call them in nested functions or block statements
+
+### Working of reacts
+react cares about component, props,state and context
+reactDOM interfaces with realDOM
+
+react uses concept called Virtual DOM
+
+re-evaluating component !== re-rendering the DOM
+
+changes to real DOM are only made on differences between two REACT DOM Snapshots
+
+# if a component is re-executed all it's children will also re-execute
+if we don't want child to re-execute then export it as 
+
+export default React.memo(ChildOutputComponent)
+
+1. only if value of prop changes the above component will be re-executed and same for all it's child components i.e. this branch will be cut off
+
+however if ChildOutputComponent has ( functions,arrays or objects) as input props then that will be re-executed for every re-execution of parent component.
+
+However above exception can be handled with 
+## useCallback() Hook
+
+it saves function of our choice in react internal memory and uses same function
+everytime while using React.memo
+
+just wrap the function in this HOOk
+
+e.g.
+
+const toggleparagraphHandler = useCallback(()=>{
+    setShowParagraph((prevShowParagraph) => ! prevShowParagraph);
+},[]);
+//dependencies are same as that of useEffect
+
+ # a state is initialized only once by react unless the component is removed from the DOM which happens in case of conditional rendering of components
+
+ # State Updates and scheduling
+
+ any chnage in state is scheduled in react and doesn't happen immediately. however, in most cases it is very fast (instantly). However, order of state changes for same state is always guranteed
+ always use function form to set state, as react will take the lates state into account OR useEffect for two separate state changes effecting a 3rd State
+
+ # if two state updates are one after the another in one sycnhronous code block then react will batch them together into one state update
+
+ # useMemo Hook can be used to memoize data in component 
+e.g. const sortedList = props.items.sort((a,b) => a-b);
+
+const {items} = props;
+const sortedList = useMemo(()=>{ 
+return items.sort((a,b) => a-b)
+}, [items]);
+
+thus, sorting in component will only run if items change
+
+in parent also while passing array useMemo should be used
+<DemoList title={lastTitle} items= {useMemo(()=> [5,3,1,10,9],[])}>
