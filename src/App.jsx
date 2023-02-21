@@ -8,6 +8,7 @@ import LoginApp from './apps/LoginApp';
 import { AuthContextProvider } from './store/auth-context';
 import FoodOrderingApp from './apps/FoodOrderingApp';
 import StarWarApp from './apps/StarWarApp';
+import CounterApp from './apps/CounterApp';
 
 // login app will run with authcontext provider wrapped around only 
 {/* <AuthContextProvider>
@@ -20,7 +21,7 @@ function App(){
 
 
 
-<StarWarApp/>
+<CounterApp/>
 
        
     )

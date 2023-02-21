@@ -212,3 +212,7 @@ thus, sorting in component will only run if items change
 
 in parent also while passing array useMemo should be used
 <DemoList title={lastTitle} items= {useMemo(()=> [5,3,1,10,9],[])}>
+
+
+### CUSTOM HOOKS
+outsource stateful logic into re-usable components
