@@ -1,7 +1,6 @@
 .form {
     margin: 1rem 0;
-    height: 19rem;
-    overflow: auto;
+
   }
   
   .control {
@@ -40,11 +39,15 @@
   
   .actions button:hover,
   .actions button:active {
-    background-color: #ffe6dc;
+    background-color: #7a2706;
+    color:white;
+  }
+
+  .actions button{
+    border: 1px solid #5a1a01;
   }
   
   .actions .submit {
-    border: 1px solid #5a1a01;
     background-color: #5a1a01;
     color: white;
   }

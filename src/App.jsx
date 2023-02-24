@@ -11,6 +11,7 @@ import StarWarApp from './apps/StarWarApp';
 import CounterApp from './apps/CounterApp';
 import CustomHookApp from './apps/CustomHookApp';
 import FormApp from './apps/FormApp';
+import ReduxToggleCounterApp from './apps/ReduxToggleCounterApp';
 
 
 // login app will run with authcontext provider wrapped around only 
@@ -24,7 +25,7 @@ function App(){
 
 
 
-<FoodOrderingApp/>
+<ReduxToggleCounterApp/>
 
        
     )

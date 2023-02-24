@@ -216,3 +216,22 @@ in parent also while passing array useMemo should be used
 
 ### CUSTOM HOOKS
 outsource stateful logic into re-usable components
+
+
+### REDUX in react
+
+3 kind of states
+1. Local State e.g. listening to user input
+2. Cross component State e.g. open closed state of modal/ achieved through prop chains/prop drilling
+3. App wide State e.g. User authentication
+
+Both react context and redux help us to manange cross component
+or app wide states
+
+Disadvantages of react Context (potential):-
+1. Complex Setup/Management
+2. Not good for high frequency changes
+
+> npm i redux react-redux
+
+react-redux is wrapper of react over redux
