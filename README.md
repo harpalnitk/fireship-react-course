@@ -235,3 +235,5 @@ Disadvantages of react Context (potential):-
 > npm i redux react-redux
 
 react-redux is wrapper of react over redux
+
+>npm i @reduxjs/toolkit , after this u can uninstall redux because that is included in the toolkit
