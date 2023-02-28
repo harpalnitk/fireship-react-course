@@ -1,32 +1,9 @@
 
 import { createSlice,configureStore } from '@reduxjs/toolkit';
-import { logDOM } from '@testing-library/react';
+import counterReducer from './redux-toggle-counter-store-counter';
+import authReducer from './redux-toggle-counter-store-auth';
 
 
-const initialState= {counter:0, showCounter: true, isAuthenticated: false};
-
-const counterSlice = createSlice({
-    name:'counter',
-    initialState: initialState,
-    reducers:{
-        increment(state){
-            //we are allowed to mutate the state
-            //redux-toolkit internally uses imgur to clone the state
-            //and allow us to mutate the state; it creates new object of
-            //state automatically
-            state.counter++;
-        },
-        decrement(state){
-            state.counter--;
-        },
-        increase(state,action){
-            state.counter = state.counter + action.payload;
-        },
-        toggleCounter(state){
-            state.showCounter= !state.showCounter
-        }
-    }
-});
 
 const initialAuthState = {isAuthenticated: false};
 
@@ -82,9 +59,8 @@ const authSlice = createSlice({
 // })
 
 const store = configureStore({
-    reducer: {counter: counterSlice.reducer, auth: authSlice.reducer}
+    reducer: {counter: counterReducer, auth: authReducer}
 })
 
-export const counterActions = counterSlice.actions;
-export const authActions = authSlice.actions;
+
 export default store;

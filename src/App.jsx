@@ -12,6 +12,7 @@ import CounterApp from './apps/CounterApp';
 import CustomHookApp from './apps/CustomHookApp';
 import FormApp from './apps/FormApp';
 import ReduxToggleCounterApp from './apps/ReduxToggleCounterApp';
+import ReduxCartApp from './apps/ReduxCartApp';
 
 
 // login app will run with authcontext provider wrapped around only 
@@ -25,7 +26,7 @@ function App(){
 
 
 
-<ReduxToggleCounterApp/>
+<ReduxCartApp/>
 
        
     )
