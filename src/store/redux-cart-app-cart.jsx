@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+
+//reducers must be pure, side-effect free and synchronous
 const cartSlice = createSlice({
     name: 'cart',
     initialState:{
