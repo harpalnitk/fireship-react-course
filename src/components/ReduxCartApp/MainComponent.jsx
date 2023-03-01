@@ -5,8 +5,9 @@ import './MainComponent.module.css';
 import { useEffect} from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { uiSliceActions } from '../../store/redux-cart-app-ui';
+
 import Notification from './UI/Notification';
+import { sendCartData, fetchCartData } from '../../store/redux-cart-app-actions';
 
 //this will be initialized only once when the app loads
 let isInitial = true;
@@ -18,51 +19,20 @@ function MainComponent() {
 
   const dispatch = useDispatch();
 
+useEffect(()=>{
+  dispatch(fetchCartData());
+},[dispatch])
+
+
   useEffect(() => {
-
-    const sendCartData = async ()=>{
-      dispatch(uiSliceActions.showNotification({
-        status: 'pending',
-        title:'Sending...',
-        message: 'Sending Cart data!'
-      }));
-      const res = await fetch(
-        `https://fireship-blog-react-firebase-default-rtdb.firebaseio.com/cart.json`,
-        {
-          //new data will override existing data with PUT
-          method: 'PUT',
-          body: JSON.stringify(cart),
-        }
-      );
-      if(!res.ok){
-        throw new Error('Sending Cart data failed!');
-        // dispatch(uiSliceActions.showNotification({
-        //   status: 'error',
-        //   title:'Error...',
-        //   message: 'An error occured while sending cart data!!'
-        // }));
-      }
-     // const resData = await res.json();
-
-      dispatch(uiSliceActions.showNotification({
-        status: 'success',
-        title:'Success...',
-        message: 'Sent Cart data successfully!'
-      }));
-    }
-
-    if(isInitial){
-      isInitial = false;
-      return;
-    }
-    sendCartData().catch(error=>{
-      dispatch(uiSliceActions.showNotification({
-        status: 'error',
-        title:'Error...',
-        message: 'An error occured while sending cart data!!'
-      }));
-    });
-//react-redux will ensure that dispatch function never changes
+if(isInitial){
+  isInitial = false;
+  return;
+}
+// we don't want to send cart data on first app upload
+if(cart.changed){
+  dispatch(sendCartData(cart));
+}
   }, [cart, dispatch]);
 
   return (

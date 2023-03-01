@@ -237,3 +237,15 @@ Disadvantages of react Context (potential):-
 react-redux is wrapper of react over redux
 
 >npm i @reduxjs/toolkit , after this u can uninstall redux because that is included in the toolkit
+
+# action creators in react
+
+## Thunk
+thunk is a function that delays an action until later
+
+
+## REACT ROUTER
+>npm i react-router-dom@5
+
+version 5 is new but in course first version 5 is used and then we migrtae to version 6
+dom is browser i.e. client side code of react-router
