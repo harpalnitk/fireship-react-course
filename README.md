@@ -249,3 +249,23 @@ thunk is a function that delays an action until later
 
 version 5 is new but in course first version 5 is used and then we migrtae to version 6
 dom is browser i.e. client side code of react-router
+
+1. register all routes with <Route> in app.jsx
+2. Surround main app with      <BrowserRouter>
+3. Use Link or Navlink
+
+# without <Switch> nested routes will be displayed together on same page
+i.e /products/p1
+
+will display both
+/products component
+and /products/p1 component on same page
+
+
+with <Switch> enclosing all Routes, first matched route will be displayed
+
+i.e. /products if before /products/p1 then /products will be displayed
+
+or use exact prop for exact match
+
+# useHistory() hook for programatic navigation

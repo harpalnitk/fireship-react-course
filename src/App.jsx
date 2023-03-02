@@ -14,7 +14,8 @@ import './App.css';
 // import ReduxToggleCounterApp from './apps/ReduxToggleCounterApp';
 // import ReduxCartApp from './apps/ReduxCartApp';
 
-import ReactRouterApp from './apps/ReactRouterApp';
+// import ReactRouterApp from './apps/ReactRouterApp';
+import ReactRouterAppPractice from './apps/ReactRouterAppPractice';
 
 // // login app will run with authcontext provider wrapped around only 
 // {/* <AuthContextProvider>
@@ -27,7 +28,7 @@ function App(){
 
 
 
-<ReactRouterApp/>
+<ReactRouterAppPractice/>
 
        
     )
