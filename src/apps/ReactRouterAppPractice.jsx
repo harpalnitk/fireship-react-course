@@ -5,6 +5,8 @@ import MainComponent from '../components/ReactRouterAppPractice/MainComponent'
 //and not just module scoped
 import  './ReactRouterAppPractice.css';
 
+
+//! THIS APP WORKS WITH VERSION 5 OF REACT-ROUTER-DOM
 const ReactRouterAppPractice = (props) => {
      return (
         <BrowserRouter>

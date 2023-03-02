@@ -269,3 +269,23 @@ i.e. /products if before /products/p1 then /products will be displayed
 or use exact prop for exact match
 
 # useHistory() hook for programatic navigation
+
+VERSION 6 migration
+1. <Switch> replaced with <Routes>
+2. Component provided as input property of Route with element
+3. No need of exact, it will always 
+looks for exact match 
+4. activeClassName={classes.active} gets replaced with
+className={(navData)=> navData.isActive ? 'classes.active': ''}
+5. Redirect changes to Navigate and is passed as element
+with replace prop it replaces the current page and without replace prop  
+it pushes the page
+6. Nested Route also need to be wrapped in Routes
+nested route need parent route with welcome/*
+and the nested route in parent route component 
+needs to be only relative
+Link will also be relative
+7. nested route can be defined in main route as inside element and outlet can be used in component to define where nested content will be placed
+8. useHistory replaced with useNavigate
+9. Prompt does not exist in version 6 as of now
+  
