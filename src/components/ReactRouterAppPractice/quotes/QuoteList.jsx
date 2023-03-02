@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import { useHistory, useLocation, useRouteMatch } from 'react-router-dom'; 
+import { useNavigate, useLocation } from 'react-router-dom'; 
 
 import QuoteItem from './QuoteItem';
 import classes from './QuoteList.module.css';
@@ -15,8 +15,9 @@ const sortQuotes = (quotes, ascending) => {
 };
 
 const QuoteList = (props) => {
-const history= useHistory();
-const location = useLocation();
+ 
+  const location = useLocation();
+  const navigate = useNavigate();
 
 const queryParams = new URLSearchParams(location.search);// this is default javascript class
 const isSortAscending = queryParams.get('sort') === 'asc';
@@ -31,7 +32,10 @@ const changeSortingHandler = ()=>{
   //   search:`sort=${isSortAscending ? 'desc' : 'asc'}`
   // });
   //OR
-  history.push(`${location.pathname}?sort=${isSortAscending ? 'desc' : 'asc'}`);
+  navigate({
+    pathname: location.pathname,
+    search: `?sort=${isSortAscending ? 'desc' : 'asc'}`,
+  });
 }
   return (
     <Fragment>

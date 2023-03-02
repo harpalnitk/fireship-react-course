@@ -1,18 +1,18 @@
 import QuoteForm from '../quotes/QuoteForm';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useHttp from '../../../hooks/ReactRouterAppPractice/use-http';
 import { addQuote } from '../../../lib/ReactRouterAppPractice/api';
 import { useEffect } from 'react';
 
 const NewQuote = (props) => {
    const {sendRequest,status} = useHttp(addQuote);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(()=>{
    if(status === 'completed'){
-      history.push('/quotes');
+      navigate('/quotes');
    }
-  },[status,history]);
+  },[status,navigate]);
 
 
   const addQuoteHandler = (quoteData) => {
