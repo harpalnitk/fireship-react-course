@@ -10,6 +10,10 @@ const MainNavigation = () => {
 
   const isLoggedIn = authCtx.isLoggedIn;
 
+  const logoutHandler = ()=>{
+    authCtx.logout();
+  }
+
   return (
     <header className={classes.header}>
       <NavLink to='/'>
@@ -22,13 +26,17 @@ const MainNavigation = () => {
                     <NavLink to='/auth' className={navData => navData.isActive ? classes.active : '' }>Login</NavLink>
                   </li> 
                   )}
-
-          <li>
+{isLoggedIn && (<>
+  <li>
             <NavLink to='/profile' className={navData => navData.isActive ? classes.active : '' }>Profile</NavLink>
           </li>
           <li>
-            <button>Logout</button>
+            <button onClick={logoutHandler}>Logout</button>
           </li>
+</>
+
+)}
+
         </ul>
       </nav>
     </header>

@@ -3,15 +3,21 @@ import { Route, Routes} from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import AuthPage from './pages/AuthPage'
 import UserProfile from './components/Profile/UserProfile';
+import NotFound from '../ReactRouterAppPractice/pages/NotFound';
+
+import { useContext } from 'react';
+import AuthContext from './store/auth-context';
 
 
 const MainComponent = (props) => {
+  const authCtx = useContext(AuthContext);
     return (
         <Layout>
           <Routes>
             <Route path='/' element={<HomePage/>}/>
-            <Route path='/auth' element={<AuthPage/>}/>
-            <Route path='/profile' element={<UserProfile/>}/>
+            {!authCtx.isLoggedIn && <Route path='/auth' element={<AuthPage/>}/>}
+            {<Route path='/profile' element={authCtx.isLoggedIn  ? <UserProfile/> : <AuthPage/>}/>}
+            <Route path='*' element={<NotFound />} />
           </Routes>
         </Layout>
       );
