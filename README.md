@@ -288,4 +288,19 @@ Link will also be relative
 7. nested route can be defined in main route as inside element and outlet can be used in component to define where nested content will be placed
 8. useHistory replaced with useNavigate
 9. Prompt does not exist in version 6 as of now
+
+## Lazy Loading
+
+remove the import of the component lazy loaded and add
+const NewQuote = React.lazy(()=> import ('./pages/NewQuote'));
+
+also wrap all routes wit Suspense component to show a fallback component
+while the code is being loaded
+
+## Deplyment
+ALL SPA or react apps are static and need static hosts
+
+# Installing on firebase
+> npm i -g firebase-tools
+
   

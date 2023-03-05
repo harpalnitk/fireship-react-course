@@ -15,7 +15,8 @@ import './App.css';
 // import ReduxCartApp from './apps/ReduxCartApp';
 
 //import ReactRouterApp from './apps/ReactRouterApp';
-import ReactRouterAppPractice from './apps/ReactRouterAppPractice';
+// import ReactRouterAppPractice from './apps/ReactRouterAppPractice';
+import FirebaseLoginApp from './apps/FirebaseLoginApp';
 
 // // login app will run with authcontext provider wrapped around only 
 // {/* <AuthContextProvider>
@@ -28,7 +29,7 @@ function App(){
 
 
 
-<ReactRouterAppPractice/>
+<FirebaseLoginApp/>
 
        
     )
