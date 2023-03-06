@@ -65,8 +65,9 @@ const navigate = useNavigate();
         });
       }
     }).then(data => {
-      
-      authCtx.login(data.idToken);
+      //firebase return expiresIn time in seconds in String format
+      const expirationTime = new Date(new Date().getTime() + (+data.expiresIn * 1000));
+      authCtx.login(data.idToken, expirationTime.toISOString());
       navigate('/',{replace: true});
 
     }).catch(err=>{
