@@ -303,4 +303,17 @@ ALL SPA or react apps are static and need static hosts
 # Installing on firebase
 > npm i -g firebase-tools
 
+
+## ANIMATIONS
+css transition and animations are fine
+but one limitation
+conditionally rendered Modal or Backdrop will show in animation
+bu out animation is not shown as the component is instantly removed by JSX code
+
+# react-transition-group package  
+other alternative is 
+1. react-motion
+2. react-move
+3. react-router-transition
+
   

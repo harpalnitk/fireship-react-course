@@ -16,7 +16,10 @@ import './App.css';
 
 //import ReactRouterApp from './apps/ReactRouterApp';
 // import ReactRouterAppPractice from './apps/ReactRouterAppPractice';
-import FirebaseLoginApp from './apps/FirebaseLoginApp';
+// import FirebaseLoginApp from './apps/FirebaseLoginApp';
+import ReactAnimations from './apps/ReactAnimations';
+
+
 
 // // login app will run with authcontext provider wrapped around only 
 // {/* <AuthContextProvider>
@@ -29,7 +32,7 @@ function App(){
 
 
 
-<FirebaseLoginApp/>
+<ReactAnimations/>
 
        
     )
