@@ -316,4 +316,32 @@ other alternative is
 2. react-move
 3. react-router-transition
 
+
+## React Context API
+should not be used for high frequency updates
+solution is hooks-store i.e custom hooks
+
+
+## Adding Typescript
+
+1. Typescript is superset of javascript
+2. javascript is dynamically typed  e.g. function add(a,b)   a, b can be numbers or strings
+Typescript adds static typing to javascript function(a:number,b:number) a,b can only be numbers
+
+# Install typescript
+>npm init
+> npm install typescript 
+
+To RUn
+>npx tsc "filelocation/filename.ts"
+
+it will generate a filename.js file
+
+//Primitives
+number,string,boolean,null,undefined
+let age:number =24;
+
+let hobbies: string[];//array of strings
+hobbies= ['cooking','singing'];
+
   

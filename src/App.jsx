@@ -17,7 +17,8 @@ import './App.css';
 //import ReactRouterApp from './apps/ReactRouterApp';
 // import ReactRouterAppPractice from './apps/ReactRouterAppPractice';
 // import FirebaseLoginApp from './apps/FirebaseLoginApp';
-import ReactAnimations from './apps/ReactAnimations';
+// import ReactAnimations from './apps/ReactAnimations';
+import ReactContextApp from './apps/ReactContextApp';
 
 
 
@@ -32,7 +33,7 @@ function App(){
 
 
 
-<ReactAnimations/>
+<ReactContextApp/>
 
        
     )
