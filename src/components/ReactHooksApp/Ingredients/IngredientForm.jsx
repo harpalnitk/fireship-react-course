@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import Card from '../UI/Card';
 import './IngredientForm.css';
+import LoadingIndicator from '../UI/LoadingIndicator';
 
 //react memo ensures that componnet re-renders only when the props change
 const IngredientForm = React.memo((props) => {
@@ -53,7 +54,8 @@ const IngredientForm = React.memo((props) => {
             />
           </div>
           <div className='ingredient-form__actions'>
-            <button type='submit'>Add Ingredient</button>
+            {!props.loading && <button type='submit'>Add Ingredient</button>}
+            {props.loading && <LoadingIndicator/>}
           </div>
         </form>
       </Card>
