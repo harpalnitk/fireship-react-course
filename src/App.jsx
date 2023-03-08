@@ -18,8 +18,8 @@ import './App.css';
 // import ReactRouterAppPractice from './apps/ReactRouterAppPractice';
 // import FirebaseLoginApp from './apps/FirebaseLoginApp';
 // import ReactAnimations from './apps/ReactAnimations';
-import ReactContextApp from './apps/ReactContextApp';
-
+// import ReactContextApp from './apps/ReactContextApp';
+import ReactHooksApp from './apps/ReactHooksApp';
 
 
 // // login app will run with authcontext provider wrapped around only 
@@ -33,7 +33,7 @@ function App(){
 
 
 
-<ReactContextApp/>
+<ReactHooksApp/>
 
        
     )
