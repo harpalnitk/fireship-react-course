@@ -1,9 +1,10 @@
-import React, { useReducer, useCallback } from 'react';
+import React, { useReducer, useCallback, useMemo, useEffect } from 'react';
 
 import IngredientForm from './IngredientForm';
 import IngredientList from './IngredientList';
 import ErrorModal from '../UI/ErrorModal';
 import Search from './Search';
+import useHttp from '../hooks/http-hook';
 
 const ingredientReducer = (state, action) => {
   switch (action.type) {
@@ -14,21 +15,6 @@ const ingredientReducer = (state, action) => {
     case 'DELETE':
       return state.filter((ing) => ing.id !== action.id);
     default:
-  }
-};
-
-const httpReducer = (currHttpState, action) => {
-  switch (action.type) {
-    case 'SEND':
-      return {loading:true, error:null};
-    case 'RESPONSE':
-      return {...currHttpState, loading:false};
-    case 'ERROR':
-      return { loading:false,error:action.errorMessage};
-      case 'CLEAR':
-        return {...currHttpState, error:null};
-    default:
-      throw new Error('Should not get here');
   }
 };
 
@@ -44,7 +30,17 @@ const Ingredients = () => {
   //react wil re-render the component whenever reducer returns a new state
   const [userIngredients, dispatch] = useReducer(ingredientReducer, []);
 
-  const [httpState, dispatchHttp] = useReducer(httpReducer,{loading:false, error:null});
+  //! using custom http hook
+  const {
+    isLoading,
+    error,
+    data,
+    sendRequest,
+    reqExtra,
+    reqIdentifier,
+    clear,
+  } = useHttp();
+
   //use effect runs after and for every component re-render cycle
 
   //IN SEARCH WE ARE FETCHING INGREDIENTS SO NO NEED HERE
@@ -71,65 +67,92 @@ const Ingredients = () => {
   // },[]);// with an empty array it only run
   // once when component renders(component did mount)
 
-  const addIngredientHandler = (ingredient) => {
-    //setIsLoading(true);
-    dispatchHttp({type:'SEND'});
-    fetch(
-      `https://fireship-blog-react-firebase-default-rtdb.firebaseio.com/ingredients.json`,
-      {
-        method: 'POST',
-        body: JSON.stringify(ingredient),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-    )
-      .then((res) => {
-        return res.json();
-      })
-      .then((resData) => {
-        //setIsLoading(false);
-        dispatchHttp({type:'RESPONSE'});
-        // setUserIngredients((prevState) => [
-        //   ...prevState,
-        //   { id: resData.name, ...ingredient },
-        // ]);
-        dispatch({
-          type: 'ADD',
-          ingredient: { id: resData.name, ...ingredient },
-        });
-      })
-      .catch((err) => {
-        // setIsLoading(false);
-        // setError(err.message);
-        dispatchHttp({type:'ERROR',errorMessage: err.message});
-      });
-  };
+  //useCallback used because this function is being passed to ingredient
+  //form and whenever ingredients change
+  //ingredient form should not be re-rendered
+  const addIngredientHandler = useCallback(
+    (ingredient) => {
+      sendRequest(
+        `https://fireship-blog-react-firebase-default-rtdb.firebaseio.com/ingredients.json`,
+        'POST',
+        JSON.stringify(ingredient),
+        ingredient,
+        'ADD_INGREDIENT'
+      );
+      //setIsLoading(true);
+      // dispatchHttp({type:'SEND'});
+      // fetch(
+      //   `https://fireship-blog-react-firebase-default-rtdb.firebaseio.com/ingredients.json`,
+      //   {
+      //     method: 'POST',
+      //     body: JSON.stringify(ingredient),
+      //     headers: {
+      //       'Content-Type': 'application/json',
+      //     },
+      //   }
+      // )
+      //   .then((res) => {
+      //     return res.json();
+      //   })
+      //   .then((resData) => {
+      //     //setIsLoading(false);
+      //     dispatchHttp({type:'RESPONSE'});
+      //     // setUserIngredients((prevState) => [
+      //     //   ...prevState,
+      //     //   { id: resData.name, ...ingredient },
+      //     // ]);
+      //     dispatch({
+      //       type: 'ADD',
+      //       ingredient: { id: resData.name, ...ingredient },
+      //     });
+      //   })
+      //   .catch((err) => {
+      //     // setIsLoading(false);
+      //     // setError(err.message);
+      //     dispatchHttp({type:'ERROR',errorMessage: err.message});
+      //   });
+    },
+    [sendRequest]
+  ); //ingredient is a local argument into the function
+  //not received from outside this file
+  //as such need not be entered in the depndencies array
 
-  const removeIngredientHandler = (ingredientId) => {
-    //setIsLoading(true);
-    dispatchHttp({type:'SEND'});
-    fetch(
-      `https://fireship-blog-react-firebase-default-rtdb.firebaseio.com/ingredients/${ingredientId}.json`,
-      {
-        method: 'DELETE',
-      }
-    )
-      .then((res) => {
-       // setIsLoading(false);
-       dispatchHttp({type:'RESPONSE'});
-        // setUserIngredients((prevState) =>
-        //   prevState.filter((ingredient) => ingredient.id !== ingredientId)
-        // );
-        dispatch({ type: 'DELETE', id: ingredientId });
-      })
-      .catch((err) => {
-        // setIsLoading(false);
+  //useHttp Hook cannot be used inside function,need to be used at root level
 
-        // setError(err.message);
-        dispatchHttp({type:'ERROR',errorMessage: err.message});
+  useEffect(() => {
+    //USE EFFECT RUNS after every component re-render cycle
+    //so when loading is set to true in send request
+    //this component wil re-render
+
+    if (!isLoading && !error && reqIdentifier === 'REMOVE_INGREDIENT') {
+      //if we are seinding reqExtra with delete request we will get back
+      dispatch({ type: 'DELETE', id: reqExtra });
+    } else if (!isLoading && !error && reqIdentifier === 'ADD_INGREDIENT') {
+      //in add case we are not sending anything
+      //so reqExtra will be null
+      dispatch({
+        type: 'ADD',
+        ingredient: { id: data.name, ...reqExtra },
       });
-  };
+    }
+  }, [data, reqExtra, reqIdentifier, isLoading, error]);
+  //reqExtra is a way of sending data between component to hook
+  //and then back from hook to component
+
+  const removeIngredientHandler = useCallback(
+    (ingredientId) => {
+      //setIsLoading(true);
+      // dispatchHttp({type:'SEND'});
+      sendRequest(
+        `https://fireship-blog-react-firebase-default-rtdb.firebaseio.com/ingredients/${ingredientId}.json`,
+        'DELETE',
+        null,
+        ingredientId,
+        'REMOVE_INGREDIENT'
+      );
+    },
+    [sendRequest]
+  );
 
   //useCallback caches this function so that it survives
   //re-render cycles
@@ -138,28 +161,45 @@ const Ingredients = () => {
     dispatch({ type: 'SET', ingredients: filteredIngredients });
   }, []);
 
-  const clearError = () => {
-    //there will only be one render cycle here, because react
-    // batches synchronous stateupdates together
-    //and therefore both these state updates will happen
-    //and then component will re-render
-    dispatchHttp({type:'CLEAR'});
-  };
+  //error modal should not be re-rendered again
+  // as this function is being passed to it
+  // const clearError = useCallback(() => {
+  //   //there will only be one render cycle here, because react
+  //   // batches synchronous stateupdates together
+  //   //and therefore both these state updates will happen
+  //   //and then component will re-render
+
+  //   //dispatchHttp({type:'CLEAR'});
+  //   //clear();
+  // },[]);
+
+  //we can either use React.memo in ingredientList file
+  //or use useMemo hook in parent file
+  //OR
+  //we can useMemo to store any operation which takes longer to execute
+  //and which we want to cache
+  const ingredientList = useMemo(() => {
+    return (
+      <IngredientList
+        ingredients={userIngredients}
+        onRemoveItem={removeIngredientHandler}
+      />
+    );
+  }, [userIngredients, removeIngredientHandler]);
+  //removeIngredientHandler will not change
+  //because we are using useCallback on it
 
   return (
     <div className='App'>
-      {httpState.error && <ErrorModal onClose={clearError}>{httpState.error}</ErrorModal>}
+      {error && <ErrorModal onClose={clear}>{error}</ErrorModal>}
       <IngredientForm
         onAddIngredient={addIngredientHandler}
-        loading={httpState.loading}
+        loading={isLoading}
       />
 
       <section>
         <Search onLoadIngredients={filteredIngredientsHandler} />
-        <IngredientList
-          ingredients={userIngredients}
-          onRemoveItem={removeIngredientHandler}
-        />
+        {ingredientList}
       </section>
     </div>
   );
