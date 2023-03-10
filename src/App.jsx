@@ -19,7 +19,8 @@ import './App.css';
 // import FirebaseLoginApp from './apps/FirebaseLoginApp';
 // import ReactAnimations from './apps/ReactAnimations';
 // import ReactContextApp from './apps/ReactContextApp';
-import ReactHooksApp from './apps/ReactHooksApp';
+// import ReactHooksApp from './apps/ReactHooksApp';
+import ReactFirebaseChat from './apps/ReactFirebaseChat';
 
 
 // // login app will run with authcontext provider wrapped around only 
@@ -33,7 +34,7 @@ function App(){
 
 
 
-<ReactHooksApp/>
+<ReactFirebaseChat/>
 
        
     )
